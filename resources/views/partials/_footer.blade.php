@@ -28,7 +28,7 @@
 <footer class="bg-dark text-white py-3">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 @if (isset($site_settings->site_logo ))
                 <a href="/" width="500" class="site-logo">
                     <img src="{{isset($site_settings->site_logo ) ? asset('/storage/site_logos/'.$site_settings->site_logo) : $site_settings->site_name}}" alt="{{isset($site_settings->site_name) ? $site_settings->site_name : "SYNAH-CI"}}">
@@ -40,7 +40,7 @@
                 @endif
 
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
                 <h4>Nous Contacter</h4>
                 <ul class="list-unstyled">
                     <li>
@@ -54,7 +54,30 @@
                         &nbsp;<a href="#">{{isset($site_settings->contact_email ) ? 'Email: '.$site_settings->contact_email : ''}}</a></li>
                 </ul>
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-3">
+                <h4>Liens Rapides</h4>
+                <ul class="list-unstyled">
+                    <li>
+                        <span>
+                            <i class="bi bi-phone-fill"></i>
+                        </span>
+                        &nbsp;<a href="#">Accueil</a>
+                    </li>
+                    <li>
+                        <span><i class="bi bi-envelope-fill"></i></span>
+                        &nbsp;<a href="#">Services</a>
+                    </li>
+                    <li>
+                        <span><i class="bi bi-envelope-fill"></i></span>
+                        &nbsp;<a href="#">A propos de nous</a>
+                    </li>
+                    <li>
+                        <span><i class="bi bi-envelope-fill"></i></span>
+                        &nbsp;<a href="#">Contacts</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3">
                 <h4>Nous Suivre</h4>
                 <ul class="list-unstyled">
                     <li>

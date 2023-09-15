@@ -115,7 +115,7 @@
                             @csrf
                             @method("DELETE")
                             <button  class=" btn btn-danger btn-sm text-white rounded-pill" type="submit" title="Supprimer">
-                                <i class="bi bi-trash3-fill"></i>
+                                <i class="bi bi-trash"></i>
                             </button>
                         </form>`
                     );

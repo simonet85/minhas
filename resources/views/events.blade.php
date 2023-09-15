@@ -16,6 +16,26 @@
     <div class="row">
         <div class="col-md-6">
             <h3>Événements à venir</h3>
+            @foreach ($invalid_events as $event)
+            <div class="accordion" id="membershipBenefitsAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="exclusiveContentHeader">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#event-{{$event->id}}" aria-expanded="false" aria-controls="exclusiveContentCollapse">
+                            {{$event->title}}
+                        </button>
+                    </h2>
+                    <div id="event-{{$event->id}}" class="accordion-collapse collapse p-2 " aria-labelledby="exclusiveContentHeader" data-bs-parent="#membershipBenefitsAccordion" style="">
+                        <div style="text-align: justify;"> {!!$event->description!!}</div>
+                        {{-- <span>{{$event->title}}</span> --}}
+                        <div> <strong> Date/Heure de début:</strong> {{ Carbon\Carbon::parse($event->start_time)->format('d-m-Y à H:i') }}</div>
+                        <div> <strong>Date/Heure de fin:</strong> {{ Carbon\Carbon::parse($event->end_time)->format('d-m-Y à H:i') }}</div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+        <div class="col-md-6">
+            <h3>Événements passés</h3>
             @if (!$events->isEmpty())
             {{-- {{dd($valid_events)}} --}}
             @foreach ($valid_events as $event)
@@ -49,26 +69,7 @@
             @endif
 
         </div>
-        <div class="col-md-6">
-            <h3>Événements passés</h3>
-            @foreach ($invalid_events as $event)
-            <div class="accordion" id="membershipBenefitsAccordion">
-                <div class="accordion-item">
-                    <h2 class="accordion-header" id="exclusiveContentHeader">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#event-{{$event->id}}" aria-expanded="false" aria-controls="exclusiveContentCollapse">
-                            {{$event->title}}
-                        </button>
-                    </h2>
-                    <div id="event-{{$event->id}}" class="accordion-collapse collapse p-2 " aria-labelledby="exclusiveContentHeader" data-bs-parent="#membershipBenefitsAccordion" style="">
-                        <div style="text-align: justify;"> {!!$event->description!!}</div>
-                        {{-- <span>{{$event->title}}</span> --}}
-                        <div> <strong> Date/Heure de début:</strong> {{ Carbon\Carbon::parse($event->start_time)->format('d-m-Y à H:i') }}</div>
-                        <div> <strong>Date/Heure de fin:</strong> {{ Carbon\Carbon::parse($event->end_time)->format('d-m-Y à H:i') }}</div>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
+
         {{-- <div class="pt-2">
             {{$events->links()}}
     </div> --}}

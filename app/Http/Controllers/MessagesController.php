@@ -128,7 +128,7 @@ class MessagesController extends Controller
         Mail::to($to)->queue(new ContactMail($request->name, $request->subject,$request->email, $request->message));
 
         //Get user to be notify
-        $user = User::where('email', 'cchristiansen@example.net')->first();
+        $user = User::where('email', 'admin@gmail.com')->first();
         
         //Notify the user with payload
        $user->notify(new MessageNotification($request->name,$request->subject, $request->email, $request->message));

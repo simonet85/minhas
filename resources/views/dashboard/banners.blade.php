@@ -76,7 +76,7 @@
 
                                             <td class="d-flex justify-content-between ">
                                                 <button data-bs-toggle="modal" data-bs-target="#delete-{{$homeBanner->id}}" data-toggle="tooltip" data-placement="left" title="Supprimer" type="button" class="btn btn-sm btn-danger">
-                                                    <i class="bi bi-trash3-fill"></i>
+                                                    <i class="bi bi bi-trash"></i>
                                                 </button>
                                                 {{-- Delete Modal start --}}
                                                 @include("dashboard.modals.banner-delete-modal")

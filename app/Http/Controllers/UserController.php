@@ -123,7 +123,7 @@ class UserController extends Controller
         //         'membership' => $user->membership,
         //         'action' => '<div class="d-flex justify-content-between">
         //                         <button data-bs-toggle="modal" data-bs-target="#delete-'.$user->id.'" data-toggle="tooltip" data-placement="left" title="Supprimer" type="button" class="btn btn-sm btn-danger">
-        //                             <i class="bi bi-trash3-fill"></i>
+        //                             <i class="bi bi-trash"></i>
         //                         </button>
         //                         <button data-bs-toggle="modal" data-bs-target="#edit-'.$user->id.'" data-toggle="tooltip" data-placement="left" title="Modifier" type="button" class="btn btn-sm btn-success text-white">
         //                             <i class="bi bi-pencil-square"></i>

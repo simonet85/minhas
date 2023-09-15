@@ -1285,6 +1285,14 @@ header::before {
   background: url('../../assets/img/about-hero.jpg') center center/cover;
   color: #fff;
 }
+
+@media (max-width: 768px) {
+  .about-hero {
+      background-size: contain; /* Adjust the background-size for mobile screens */
+      height: auto; /* Remove the fixed height for mobile screens */
+  }
+}
+
 .about-hero::before {
   content: "";
   display: block;
@@ -1461,16 +1469,16 @@ button.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right
 /* Media Query */
 
 
-@media (max-width: 767px) { 
+/* @media (max-width: 767px) { 
   .py { padding-top: 20px; }
    .infos { margin-top: 10px; } 
 
-}
+} */
 @media (max-width: 412) { 
   .about-img { max-width: 100%; height: auto; }
 }
 
-@media(max-width: 767px) {
+/* @media(max-width: 767px) {
    .container.py.text-center { 
     display: flex;
     flex-direction: column;
@@ -1482,9 +1490,19 @@ button.fc-today-button.fc-button.fc-state-default.fc-corner-left.fc-corner-right
    .container.py.text-center h1 {
      margin-top: 1rem; 
     } 
-}
+} */
 
-@media (max-width: 767px) { header { background-position: left right; background-size: cover; } .container.py { margin-top: 40px; } }
+/* @media (max-width: 767px) { 
+  header { 
+    background-position: left right;
+     background-size: cover; 
+  } 
+  .container.py { 
+    margin-top: 40px; 
+  } 
+} */
+
+
 
 
 header {
@@ -1495,6 +1513,80 @@ header {
   color: #fff;
   margin-bottom: 20px;
 }
+
+
+@media (max-width: 767px) { 
+  header {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 50vh;
+  }
+  .py-5 {
+    padding-top: 1rem!important;
+    padding-bottom: 1rem!important;
+  }
+  a.btn.btn-primary.mt-3{
+    margin-bottom: 20px;
+    margin-top: 5px;
+  }
+  .py { 
+      margin-top: 40px; 
+  } 
+  .container.py.text-center { 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 50%;
+    text-align: center;
+  } 
+  .container.py.text-center h1 {
+     margin-top: 1rem; 
+  } 
+  .about-hero {
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 50vh;
+  }
+  img.img-fluid.about-img {
+    display: none;
+  }
+  .py { padding-top: 20px; }
+  .infos { margin-top: 10px; } 
+
+  /* Custom CSS for scrollable table */
+.scrollable-table-container {
+  width: 100%;
+  overflow-x: auto; /* Enable horizontal scrolling */
+
+}
+
+/* Style the table for better readability */
+.scrollable-table {
+  width: 100%;
+}
+}
+
+/* .py { 
+  margin-top: 140px;
+  @media(max-width:767px){
+    margin-top: 40px; 
+  }
+}  */
+
+/* NAV BAR  */
+
+btn:focus, a:focus{
+  outline: none;
+}
+.navbar-toggler:focus{
+  outline: none !important;
+  box-shadow: none;
+}
+
+/* TABLE SCROLLABLE  */
+
+
 
 
 

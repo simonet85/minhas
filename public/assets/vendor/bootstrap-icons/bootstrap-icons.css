@@ -1272,10 +1272,10 @@ url("{{ secure_asset('/fonts/bootstrap-icons.woff?8d200481aa7f02a2d63a331fc782cf
 .bi-toggles2::before { content: "\f5da"; }
 .bi-tools::before { content: "\f5db"; }
 .bi-tornado::before { content: "\f5dc"; }
-.bi-trash-fill::before { content: "\f5dd"; }
-.bi-trash::before { content: "\f5de"; }
-.bi-trash2-fill::before { content: "\f5df"; }
-.bi-trash2::before { content: "\f5e0"; }
+.bi bi-trash-fill::before { content: "\f5dd"; }
+.bi bi-trash::before { content: "\f5de"; }
+.bi bi-trash2-fill::before { content: "\f5df"; }
+.bi bi-trash2::before { content: "\f5e0"; }
 .bi-tree-fill::before { content: "\f5e1"; }
 .bi-tree::before { content: "\f5e2"; }
 .bi-triangle-fill::before { content: "\f5e3"; }
@@ -1700,8 +1700,8 @@ url("{{ secure_asset('/fonts/bootstrap-icons.woff?8d200481aa7f02a2d63a331fc782cf
 .bi-search-heart::before { content: "\f787"; }
 .bi-sliders2-vertical::before { content: "\f788"; }
 .bi-sliders2::before { content: "\f789"; }
-.bi-trash3-fill::before { content: "\f78a"; }
-.bi-trash3::before { content: "\f78b"; }
+.bi bi-trash3-fill::before { content: "\f78a"; }
+.bi bi-trash3::before { content: "\f78b"; }
 .bi-valentine::before { content: "\f78c"; }
 .bi-valentine2::before { content: "\f78d"; }
 .bi-wrench-adjustable-circle-fill::before { content: "\f78e"; }
