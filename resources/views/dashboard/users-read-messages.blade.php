@@ -29,9 +29,9 @@
                         <div class="card top-selling overflow-auto">
 
                             <div class="filter px-3">
-                                {{-- <button class="btn btn-primary text-white btn-sm" data-bs-toggle="modal" data-bs-target="#modal-add-supportservice" data-toggle="tooltip" data-placement="left" title="Ajouter" href="{{route("supportservices.create")}}">
-                                <i class="bi bi-plus-square"></i>
-                                </button> --}}
+                                <button class="btn btn-primary text-white btn-sm" data-bs-toggle="modal" data-bs-target="#modal-add-supportservice" data-toggle="tooltip" data-placement="left" title="Ajouter" href="{{route("supportservices.create")}}">
+                                    <i class="bi bi-plus-square"></i>
+                                </button>
                                 {{--Add Modal start --}}
                                 {{-- @include("dashboard.modals.supportservice-modal-add") --}}
                                 {{-- Modal Ends  --}}
@@ -80,6 +80,7 @@
                                             </td>
                                             <td>{{$message->created_at}}</td>
 
+
                                             <td class="d-flex justify-content-between">
                                                 <button data-bs-toggle="modal" data-bs-target="#delete-{{$message->id}}" data-toggle="tooltip" data-placement="left" title="Supprimer" type="button" class="btn btn-sm btn-danger mr-5">
                                                     <i class="bi bi bi-trash"></i>
@@ -89,10 +90,8 @@
                                                 {{-- Modal Ends  --}}
 
                                                 {{-- Edit Button  --}}
-                                                <button @if($message->read==0)
-                                                    data-bs-toggle="modal" data-bs-target="#edit-{{$message->id}}"
-                                                    @endif data-toggle="tooltip" data-placement="left" title="{{$message->read == 1 ? 'Déja Répondu':'Reponse'}}" type="button" class='{{$message->read ? "disabled btn btn-sm btn-outline-info" : "btn btn-sm btn-info text-white"}}'>
-                                                    <i class="{{$message->read ? 'bi bi-x-circle disabled':'bi bi-reply'}}"></i>
+                                                <button data-bs-toggle="modal" data-bs-target="#edit-{{$message->id}}" data-toggle="tooltip" data-placement="left" title="Reponse" type="button" class="btn btn-sm btn-info text-white">
+                                                    <i class="bi bi-reply"></i>
                                                 </button>
 
                                                 {{--Edit Modal start --}}

@@ -38,14 +38,14 @@
                             </div>
 
                             <div class="card-body pb-0">
-                                <h5 class="card-title">Messages</h5>
+                                <h5 class="card-title">Messages Non Lus</h5>
 
                                 @if(session('success'))
                                 <div class="alert alert-success">
                                     {{ session('success') }}
                                 </div>
                                 @endif
-                                @if (!$messages->isEmpty())
+                                @if (!$unreadMessages->isEmpty())
 
                                 <table id="users-table" class="table table-borderless" style="width=100%">
                                     <thead>
@@ -62,7 +62,7 @@
                                         @php
                                         $i=1;
                                         @endphp
-                                        @foreach ($messages as $message)
+                                        @foreach ($unreadMessages as $message)
 
                                         <tr>
 
@@ -80,6 +80,7 @@
                                             </td>
                                             <td>{{$message->created_at}}</td>
 
+
                                             <td class="d-flex justify-content-between">
                                                 <button data-bs-toggle="modal" data-bs-target="#delete-{{$message->id}}" data-toggle="tooltip" data-placement="left" title="Supprimer" type="button" class="btn btn-sm btn-danger mr-5">
                                                     <i class="bi bi bi-trash"></i>
@@ -89,11 +90,29 @@
                                                 {{-- Modal Ends  --}}
 
                                                 {{-- Edit Button  --}}
-                                                <button @if($message->read==0)
-                                                    data-bs-toggle="modal" data-bs-target="#edit-{{$message->id}}"
-                                                    @endif data-toggle="tooltip" data-placement="left" title="{{$message->read == 1 ? 'Déja Répondu':'Reponse'}}" type="button" class='{{$message->read ? "disabled btn btn-sm btn-outline-info" : "btn btn-sm btn-info text-white"}}'>
-                                                    <i class="{{$message->read ? 'bi bi-x-circle disabled':'bi bi-reply'}}"></i>
+                                                <button data-bs-toggle="modal" data-bs-target="#edit-{{$message->id}}" data-toggle="tooltip" data-placement="left" title="Reponse" type="button" class="btn btn-sm btn-info text-white">
+                                                    <i class="bi bi-reply"></i>
                                                 </button>
+
+                                                {{-- Mark As Read Button  --}}
+                                                {{-- <button data-bs-toggle="modal" data-bs-target="#edit-{{$message->id}}" data-toggle="tooltip" data-placement="left" title="Reponse" type="button" class="btn btn-sm btn-info text-white">
+                                                <i class="bi bi-check-square"></i>
+                                                </button> --}}
+
+                                                <a 
+                                                    href="{{route('markMessageAsRead', $message->id)}}" 
+                                                    onclick="event.preventDefault(); 
+                                                    document.getElementById('markAsRead-form').submit();" 
+                                                    data-placement="left" 
+                                                    title="Marquer comme lu" 
+                                                    type="button" class="btn btn-sm btn-warning mr-5"
+                                                >
+                                                    <i class="bi bi-check-square text-white"></i>
+                                                </a>
+                                                <form id="markAsRead-form" action="{{route('markMessageAsRead', $message->id)}}" method="POST" class="d-none">
+                                                    @csrf
+                                                    @method('PUT')
+                                                </form>
 
                                                 {{--Edit Modal start --}}
                                                 @include("dashboard.modals.usermessage-modal-edit")
@@ -104,11 +123,11 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                                @else
+                                {{-- @else
                                 <div class="alert alert-danger" role="alert">
                                     La liste des messages est vide.
                                 </div>
-                                @endif
+                                --}}@endif
                             </div>
                         </div>
                     </div><!-- End Top Selling -->

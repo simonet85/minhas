@@ -109,8 +109,21 @@
             @include("dashboard.users-messages")
             @endif
 
+
+            @if (request()->is('messages-read'))
+            @include("dashboard.users-read-messages")
+            @endif
+
+            @if (request()->is('messages-unread'))
+            @include("dashboard.users-unread-messages")
+            @endif
+
             @if (request()->is('users/notification'))
             @include("dashboard.users-notifications")
+            @endif
+
+            @if (request()->is('users/unread-notifications'))
+            @include("dashboard.users-unread-notifications")
             @endif
 
 

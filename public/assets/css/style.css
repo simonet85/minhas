@@ -1583,8 +1583,12 @@ btn:focus, a:focus{
   outline: none !important;
   box-shadow: none;
 }
+/* Custom CSS */
+.disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
 
-/* TABLE SCROLLABLE  */
 
 
 

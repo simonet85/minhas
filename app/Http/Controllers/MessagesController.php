@@ -24,9 +24,11 @@ class MessagesController extends Controller
     public function index(Request $request)
     {
        
-        $messages = Messages::select(['id', 'name','subject', 'message', 'email', 'created_at'])
+        $messages = Messages::select(['id', 'name','subject', 'message', 'email','read', 'created_at'])
         ->orderBy('created_at', 'desc')
         ->get();
+
+
         if ($request->ajax()) {
           return response()->json(['messages' => $messages]);
         }
@@ -34,6 +36,35 @@ class MessagesController extends Controller
         return view("dashboard.home",[
             "messages" => $messages,
         ]);
+    }
+
+    public function showReadMessages(Request $request){
+        $readMessages = Messages::where('read',1)->orderBy('created_at', 'desc')->get();
+        
+        if ($request->ajax()) {
+          return response()->json(['messages' => $readMessages]);
+        }
+        return view("dashboard.home", compact('readMessages'));
+    }
+
+    public function showUnReadMessages(Request $request){
+        $unreadMessages = Messages::where('read',0)->orderBy('created_at', 'desc')->get();
+        
+        if ($request->ajax()) {
+          return response()->json(['messages' => $unreadMessages]);
+        }
+        return view("dashboard.home", compact('unreadMessages'));
+    }
+
+    public function markMessageAsRead($messageId){
+        $message = Messages::find($messageId);
+        // Mark all notifications as read
+
+        if ($message) {
+            $message->update(['read' => true]);
+        }
+        
+        return redirect()->back()->with('success', 'Message marqué comme lu.');
     }
 
     /**
@@ -115,8 +146,8 @@ class MessagesController extends Controller
             "message" => $request->input('message')
         ];
 
-        $to = "youremail@example.com"; //recipient
-
+        // $to = "youremail@example.com"; //recipient
+        $to = config('custom.recipient_email');
        //Saving message into Database
         $messages = new Messages( $data );
         $messages->save();
@@ -128,7 +159,11 @@ class MessagesController extends Controller
         Mail::to($to)->queue(new ContactMail($request->name, $request->subject,$request->email, $request->message));
 
         //Get user to be notify
-        $user = User::where('email', 'admin@gmail.com')->first();
+        $user = User::where('email', $to)->first();
+        // Check if the user exists
+        if(!$user){
+            return response()->json(['error' => 'Invalid user'], 400);
+        }
         
         //Notify the user with payload
        $user->notify(new MessageNotification($request->name,$request->subject, $request->email, $request->message));
@@ -136,6 +171,8 @@ class MessagesController extends Controller
         return response()->json(['success' => true,]);
 
     }
+
+
 
     /**
      * Display the specified resource.
@@ -166,9 +203,17 @@ class MessagesController extends Controller
      * @param  \App\Models\Messages  $messages
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Messages $messages)
+    public function update(Request $request,$messageId)
     {
-        //
+        // $message = Messages::find($messageId);
+        // dd($messageId);
+        // Mark all notifications as read
+
+        // if ($message) {
+        //     $message->update(['read' => true]);
+        // }
+        
+        // return redirect()->back()->with('success', 'Message marqué comme lu.');
     }
 
     /**

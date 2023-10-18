@@ -186,16 +186,18 @@
                 type: "GET"
                 , url: "{{route('notification.index')}}"
                 , success: function(data) {
-                        console.log("data :", data)
+                        // console.log("Notifications :", data.unreadNotifications.data)
                         let unreadNotifications = data.unreadNotifications
 
                         // console.log("unreadNotifications :", unreadNotifications)
                         //Display only 5 notifs
-                        unreadNotifications = unreadNotifications.slice(0, 6);
+                        // unreadNotifications = data.unreadNotifications.data.slice(0, 6);
                         //count 
-                        let count = unreadNotifications.length > 5 ? "5+" : unreadNotifications.length
+                        // let count = unreadNotifications.length > 5 ? "5+" : unreadNotifications.length
+                        let count = unreadNotifications.length;
                         //Update notification count
-                        $('.notification-count').text(count)
+                        // $('.notification-count').text(count)
+                        $('span.badge.bg-primary.badge-number.notification-count').text(count)
                         // //Update dropdown menu
                         let html = ''
                         for (let index = 0; index < unreadNotifications.length; index++) {
@@ -223,20 +225,20 @@
                 }
             });
 
-            // Messages
+            // Unread Messages
             $.ajax({
                 type: "GET"
-                , url: "{{route('messages.index')}}"
+                , url: "{{route('messages.unread')}}"
                 , success: function(data) {
                         let messages = data.messages
-                        console.log("messages :", messages)
+                        console.log("unread messages :", messages)
 
                         // console.log("messages :", messages)
                         //Display only 5 notifs
                         // messages = messages.slice(0, 6);
                         //count 
                         let count = messages.length > 10 ? "10+" : messages.length
-                        console.log('count :', count);
+                        // console.log('count :', count);
                         //Update notification count
                         $('.messages-count').text(count)
                         // //Update dropdown menu
@@ -248,7 +250,6 @@
                             <a href="{{route('messages.index')}}">
                                 <div>
                                 <h4>${messages[index].name}</h4>
-                                <p>${messages[index].message}</p>
                                 <p>${messages[index].created_at}</p>
                                 </div>
                             </a>

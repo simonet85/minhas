@@ -56,8 +56,14 @@ Route::get('/development/details/{id}',  [App\Http\Controllers\FrontController::
 Route::get('/dashboard/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard.home');
 Route::post('/messages/send', [App\Http\Controllers\MessagesController::class, 'send'])->name('messages.send');
 // Route::post('/messages/store', [App\Http\Controllers\MessagesController::class, 'store'])->name('messages.store');
+
 // Message 
 Route::resource('messages', MessagesController::class);
+
+
+
+// Route::view('/messages-read', 'dashboard.users-unread-messages');
+// Route::view('/messages-unread', 'dashboard.users-unread-messages');
 
 // Admin and users can access these routes 
 Route::middleware(['auth'])->group(function () {
@@ -72,8 +78,18 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/users/notification', NotificationController::class);
     Route::post('/users/notification/{notification}',  [App\Http\Controllers\NotificationController::class, 'markAsRead'])->name('markAsRead');
 
+    Route::get('users/unread-notifications', [App\Http\Controllers\NotificationController::class, 'unreadNotificatifications'])->name('unread.notifications');
+
+
     Route::get('/get-user-count', [App\Http\Controllers\HomeController::class, 'index'])->name('getusercount.index');
     Route::get('/monthly-users', [App\Http\Controllers\HomeController::class, 'getMonthlyUsers'])->name('monthlyusers');
+
+    //Messages
+    Route::get('/messages-unread', [App\Http\Controllers\MessagesController::class, 'showUnReadMessages'])->name('messages.unread');
+
+    Route::get('/messages-read', [App\Http\Controllers\MessagesController::class, 'showReadMessages'])->name('messages.read');
+
+    Route::put('/users/message/{message}',  [App\Http\Controllers\MessagesController::class, 'markMessageAsRead'])->name('markMessageAsRead');
 
 });
 

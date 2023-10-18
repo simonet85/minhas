@@ -11,7 +11,7 @@ class Messages extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','subject', 'email', 'message'];
+    protected $fillable = ['name','subject', 'email', 'message', 'read'];
 
     protected $dates = ['created_at', 'updated_at'];
 

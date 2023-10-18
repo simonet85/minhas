@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NotificationController extends Controller
 {
@@ -19,45 +20,44 @@ class NotificationController extends Controller
     {
         //Fetching the unread notifications
         $user = auth()->user();
-        $unreadNotifications = $user->unreadNotifications; 
-        $unreadCount = $unreadNotifications->count();
+        $notifications = $user->notifications()->paginate(5); 
+        $unreadCount = $notifications->count();
         // $only5unreadNotifs = $unreadNotifications->take(5)->get();
 
         if ($request->ajax()) {
             return response()->json([
-                "unreadNotifications" => $unreadNotifications,
-                // "only5unreadNotifs" => $only5unreadNotifs,
+                "unreadNotifications" => $notifications,
                 "unreadCount" => $unreadCount
             ]);
         }
-        return view('dashboard.home',["notifications" => $unreadNotifications]);
+        return view('dashboard.home');
 
 
-        // $notifications = [];
-        // foreach ($user->unreadNotifications as $notification) {
-        //     $notifications = $notification->type;
-        // }
     }
 
 
-        public function markAsRead($notification ){
+    public function markAsRead($notificationId ){
+        
+        $user = auth()->user();
+        // $notifications = $user->unreadNotifications->where('id',$notification)->get();
+        // Mark Notification as Read
+        $notification = $user->notifications()->find($notificationId);
+        // Mark all notifications as read
 
-            $user = auth()->user();
-            $notification = $user->unreadNotifications->where('id',$notification);
-            // Mark Notification as Read
+        if ($notification) {
             $notification->markAsRead();
-    
-            // Mark all notifications as read
-
-            // return response()->json([
-            //     'success' => true,
-            //     'unreadNotifications' => $user->unreadNotifications,
-            //     'notification' => $notification,
-                // "request" => $request->user_id,
-                // 'notification_id' => $notification_id,
-            // ]);
-            return redirect()->back();
         }
+        return redirect()->back();
+    }
+
+    public function unreadNotificatifications(){
+        $user = Auth::user();
+        // $unreadNotifications = $user->unreadNotifications;
+        $unreadNotifications = $user->unreadNotifications()->paginate(5);
+
+        return view('dashboard.home', compact('unreadNotifications'));
+
+    }
 
 
     /**

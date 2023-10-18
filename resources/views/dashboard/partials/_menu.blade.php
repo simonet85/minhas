@@ -30,14 +30,21 @@
 
                     <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
                         <i class="bi bi-bell"></i>
-                        {{-- {{$unreadCount > 10 ? "10+" : $unreadCount}} --}}
-                        <span class="badge bg-primary badge-number notification-count">0</span>
+                        {{-- {{$unreadNotificationCount > 10 ? "10+" : $unreadNotificationCount}} --}}
+                        @if(isset($allNotificationsCount))
+                        <span class="badge bg-primary badge-number notification-count"> {{$allNotificationsCount > 10 ? "10+" : $allNotificationsCount}} </span>
+                        {{-- @else --}}
+
+                        {{-- <span class="badge bg-primary badge-number notification-count"> {{$unreadNotificationCount > 10 ? "10+" : $unreadNotificationCount}} </span> --}}
+                        @endif
                     </a><!-- End Notification Icon -->
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow ">
                         <li class="dropdown-header">
-                            {{-- {{$unreadCount > 10 ? "10+" : $unreadCount}} --}}
-                            Vous avez <span class="notification-count">0</span> nouvelles notifications
-                            <a href="{{route('notification.index')}}"><span class="badge rounded-pill bg-primary p-2 ms-2">Voir tous</span></a>
+                            {{-- {{$unreadNotificationCount > 10 ? "10+" : $unreadNotificationCount}} --}}
+                            @if(isset($unreadNotificationCount))
+                            Vous avez <span class="notification-count">{{$unreadNotificationCount > 10 ? "10+" : $unreadNotificationCount}}</span> nouvelles notifications
+                            <a href="{{route('unread.notifications')}}"><span class="badge rounded-pill bg-primary p-2 ms-2">Voir tous</span></a>
+                            @endif
 
                         </li>
                         <li>
@@ -72,7 +79,7 @@
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
                         <li class="dropdown-header">
                             Vous avez <span class="messages-count">0</span> nouveaux messages
-                            <a href="{{route('messages.index')}}"><span class="badge rounded-pill bg-primary p-2 ms-2">Voir tous</span></a>
+                            <a href="{{route('messages.unread')}}"><span class="badge rounded-pill bg-primary p-2 ms-2">Voir tous</span></a>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
