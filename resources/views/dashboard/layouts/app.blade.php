@@ -11,42 +11,42 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Favicons -->
-    <link href="{{asset("assets/img/favicon.png")}}" rel="icon">
-    <link href="{{asset("assets/img/apple-touch-icon.png")}}" rel="apple-touch-icon">
+    <link href="{{secure_asset("assets/img/favicon.png")}}" rel="icon">
+    <link href="{{secure_asset("assets/img/apple-touch-icon.png")}}" rel="apple-touch-icon">
 
     <!-- Google Fonts -->
-    <link href="{{url("https://fonts.gstatic.com")}}" rel="preconnect">
-    <link href="{{url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i")}}" rel="stylesheet">
+    <link href="{{secure_url("https://fonts.gstatic.com")}}" rel="preconnect">
+    <link href="{{secure_url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i")}}" rel="stylesheet">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet">
 
     <!-- Vendor CSS Files -->
-    <link href="{{asset("assets/vendor/bootstrap/css/bootstrap.min.css")}}" rel="stylesheet">
-    <link href="{{asset("assets/vendor/bootstrap-icons/bootstrap-icons.css")}}" rel="stylesheet">
-    <link href="{{asset("assets/vendor/boxicons/css/boxicons.min.css")}}" rel="stylesheet">
-    <link href="{{asset("assets/vendor/quill/quill.snow.css")}}" rel="stylesheet">
-    <link href="{{asset("assets/vendor/quill/quill.bubble.css")}}" rel="stylesheet">
-    <link href="{{asset("assets/vendor/remixicon/remixicon.css")}}" rel="stylesheet">
-    <link href="{{asset("assets/vendor/simple-datatables/style.css")}}" rel="stylesheet">
+    <link href="{{secure_asset("assets/vendor/bootstrap/css/bootstrap.min.css")}}" rel="stylesheet">
+    <link href="{{secure_asset("assets/vendor/bootstrap-icons/bootstrap-icons.css")}}" rel="stylesheet">
+    <link href="{{secure_asset("assets/vendor/boxicons/css/boxicons.min.css")}}" rel="stylesheet">
+    <link href="{{secure_asset("assets/vendor/quill/quill.snow.css")}}" rel="stylesheet">
+    <link href="{{secure_asset("assets/vendor/quill/quill.bubble.css")}}" rel="stylesheet">
+    <link href="{{secure_asset("assets/vendor/remixicon/remixicon.css")}}" rel="stylesheet">
+    <link href="{{secure_asset("assets/vendor/simple-datatables/style.css")}}" rel="stylesheet">
 
     <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="{{url('https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{secure_url('https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css')}}">
 
 
     <!-- Template Main CSS File -->
-    <link href="{{asset("assets/css/style.css")}}" rel="stylesheet">
+    <link href="{{secure_asset("assets/css/style.css")}}" rel="stylesheet">
 
     <!-- Scripts -->
-    <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js')}}"></script>
-    <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js')}}"></script>
+    <script src="{{secure_url('https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js')}}"></script>
+    <script src="{{secure_url('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js')}}"></script>
     <!--Fullcalendar-->
-    <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js')}}"></script>
-    <link rel="stylesheet" href="{{url('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css')}}" />
-    <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/fr.js')}}"></script>
+    <script src="{{secure_url('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js')}}"></script>
+    <link rel="stylesheet" href="{{secure_url('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css')}}" />
+    <script src="{{secure_url('https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/locale/fr.js')}}"></script>
     <!--Moment-->
-    <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js')}}"></script>
+    <script src="{{secure_url('https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment-with-locales.min.js')}}"></script>
     <!--CKEditor-->
-    <script src="{{url('https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js')}}"></script>
+    <script src="{{secure_url('https://cdn.ckeditor.com/ckeditor5/36.0.1/classic/ckeditor.js')}}"></script>
     <script>
         moment.locale('fr'); // Set the locale to French
 
@@ -75,7 +75,7 @@
                 , editable: true
                 , eventLimit: true
                 , events: {
-                    url: '{{ route("calendarevents.index") }}'
+                    secure_url: '{{ route("calendarevents.index") }}'
                     , type: 'GET'
                     , error: function() {
                         alert('Error fetching events');
@@ -88,13 +88,13 @@
                                 , title: event.title
                                 , start: event.start_time
                                 , end: event.end_time
-                                , url: "/manage/calendarevents/" + event.id
+                                , secure_url: "/manage/calendarevents/" + event.id
                             }, true);
                         })
                     }
                 }
                 , eventClick: function(info) {
-                        window.location.href = info.event.url;
+                        window.location.href = info.event.secure_url;
                     }
                     // , eventAfterRender: function(event, element, view) {
                     //     var now = new Date();
@@ -167,7 +167,7 @@
                 let query = $(this).val();
 
                 $.ajax({
-                    url: "{{ route('users.search') }}"
+                    secure_url: "{{ route('users.search') }}"
                     , type: 'GET'
                     , data: {
                         query: query
@@ -184,7 +184,7 @@
             // Notifications
             $.ajax({
                 type: "GET"
-                , url: "{{route('notification.index')}}"
+                , secure_url: "{{route('notification.index')}}"
                 , success: function(data) {
                         // console.log("Notifications :", data.unreadNotifications.data)
                         let unreadNotifications = data.unreadNotifications
@@ -228,7 +228,7 @@
             // Unread Messages
             $.ajax({
                 type: "GET"
-                , url: "{{route('messages.unread')}}"
+                , secure_url: "{{route('messages.unread')}}"
                 , success: function(data) {
                         let messages = data.messages
                         console.log("unread messages :", messages)
@@ -283,22 +283,22 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
     <!-- Vendor JS Files -->
-    <script src="{{asset("assets/vendor/apexcharts/apexcharts.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/chart.js/chart.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/echarts/echarts.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/quill/quill.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/simple-datatables/simple-datatables.js")}}"></script>
-    <script src="{{asset("assets/vendor/tinymce/tinymce.min.js")}}"></script>
-    <script src="{{asset("assets/vendor/php-email-form/validate.js")}}"></script>
+    <script src="{{secure_asset("assets/vendor/apexcharts/apexcharts.min.js")}}"></script>
+    <script src="{{secure_asset("assets/vendor/bootstrap/js/bootstrap.bundle.min.js")}}"></script>
+    <script src="{{secure_asset("assets/vendor/chart.js/chart.min.js")}}"></script>
+    <script src="{{secure_asset("assets/vendor/echarts/echarts.min.js")}}"></script>
+    <script src="{{secure_asset("assets/vendor/quill/quill.min.js")}}"></script>
+    <script src="{{secure_asset("assets/vendor/simple-datatables/simple-datatables.js")}}"></script>
+    <script src="{{secure_asset("assets/vendor/tinymce/tinymce.min.js")}}"></script>
+    <script src="{{secure_asset("assets/vendor/php-email-form/validate.js")}}"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{asset("assets/js/main.js")}}"></script>
-    <script src="{{asset('assets/js/script.js')}}"></script>
+    <script src="{{secure_asset("assets/js/main.js")}}"></script>
+    <script src="{{secure_asset('assets/js/script.js')}}"></script>
     <!-- Scripts -->
     <!-- DataTables JS -->
-    <script src="{{url('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
-    <script src="{{url('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{secure_url('https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{secure_url('https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>
 
     <script>
         setTimeout(function() {
